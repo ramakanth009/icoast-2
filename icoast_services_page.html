@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - iCoast Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #f39c12;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        /* Services Grid */
+        .services-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-header {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.1);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-header::before {
+            top: -30%;
+            right: -30%;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: #f39c12;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-content {
+            padding: 2rem;
+        }
+
+        .service-content p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+            color: #666;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Call to Action Section */
+        .cta-section {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .primary-cta {
+            background: #f39c12;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .primary-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(243, 156, 18, 0.3);
+        }
+
+        .secondary-cta {
+            background: transparent;
+            color: white;
+            padding: 15px 40px;
+            border: 2px solid white;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .secondary-cta:hover {
+            background: white;
+            color: #2c3e50;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .service-card {
+                min-width: auto;
+            }
+
+            .primary-cta,
+            .secondary-cta {
+                display: block;
+                margin: 10px 0;
+                width: 100%;
+                max-width: 300px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .back-to-top:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">iCoast Solutions</div>
+            <ul class="nav-links">
+                <li><a href="icoast_website.html">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="icoast_about_page.html">About</a></li>
+                <li><a href="#ourevents">Our events</a></li>
+                <li><a href="#realtors">Realtors</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Our Services</h1>
+            <p>Comprehensive digital marketing solutions designed to elevate your brand and drive measurable results. From website development to advanced analytics, we provide everything your business needs to succeed online.</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <h2 class="section-title">Digital Marketing Services</h2>
+            <p class="section-subtitle">Tailored strategies and cutting-edge solutions to accelerate your business growth</p>
+            
+            <div class="services-grid">
+                <!-- Website Building -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">🌐</div>
+                        <h3>Website Building</h3>
+                    </div>
+                    <div class="service-content">
+                        <p>We design responsive, performance-optimized websites tailored to your needs. With CMS integration, mobile-first design, and secure hosting, we ensure a seamless user experience that drives results.</p>
+                        <ul class="service-features">
+                            <li>Responsive mobile-first design</li>
+                            <li>CMS integration & management</li>
+                            <li>Performance optimization</li>
+                            <li>Secure hosting solutions</li>
+                            <li>SEO-ready architecture</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Get Started</a>
+                    </div>
+                </div>
+
+                <!-- SEO -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">🔍</div>
+                        <h3>Search Engine Optimization (SEO)</h3>
+                    </div>
+                    <div class="service-content">
+                        <p>Our SEO services cover on-page optimization, off-page link building, and technical SEO enhancements. We improve your website's visibility with targeted keywords and robust strategies for higher search engine rankings.</p>
+                        <ul class="service-features">
+                            <li>On-page optimization</li>
+                            <li>Technical SEO audits</li>
+                            <li>Link building strategies</li>
+                            <li>Keyword research & targeting</li>
+                            <li>Local SEO optimization</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Boost Rankings</a>
+                    </div>
+                </div>
+
+                <!-- PPC -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">📈</div>
+                        <h3>Pay-Per-Click Advertising (PPC)</h3>
+                    </div>
+                    <div class="service-content">
+                        <p>We deliver targeted PPC campaigns with advanced bidding strategies, keyword research, and performance tracking. Our approach maximizes ROI and generates quality leads on platforms like Google Ads.</p>
+                        <ul class="service-features">
+                            <li>Google Ads management</li>
+                            <li>Advanced bidding strategies</li>
+                            <li>Keyword research & optimization</li>
+                            <li>Performance tracking & reporting</li>
+                            <li>ROI optimization</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Start Campaign</a>
+                    </div>
+                </div>
+
+                <!-- Social Media Marketing -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">📱</div>
+                        <h3>Social Media Marketing (SMM)</h3>
+                    </div>
+                    <div class="service-content">
+                        <p>Our social media strategies connect your brand with the right audience on platforms like Facebook, Instagram, and LinkedIn. From content creation to targeted ads, we help boost engagement and loyalty.</p>
+                        <ul class="service-features">
+                            <li>Multi-platform management</li>
+                            <li>Content creation & curation</li>
+                            <li>Targeted social advertising</li>
+                            <li>Community engagement</li>
+                            <li>Brand loyalty building</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Grow Following</a>
+                    </div>
+                </div>
+
+                <!-- Google Ads & Analytics -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">📊</div>
+                        <h3>Google Ads and Analytics</h3>
+                    </div>
+                    <div class="service-content">
+                        <p>We create high-performing Google Ads campaigns and utilize Google Analytics to monitor performance. Our data-driven insights optimize user behavior tracking and refine your campaign results.</p>
+                        <ul class="service-features">
+                            <li>Google Ads campaign setup</li>
+                            <li>Analytics implementation</li>
+                            <li>Conversion tracking</li>
+                            <li>Performance optimization</li>
+                            <li>Data-driven insights</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Track Success</a>
+                    </div>
+                </div>
+
+                <!-- Content Creation -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">✍️</div>
+                        <h3>Content Creation</h3>
+                    </div>
+                    <div class="service-content">
+                        <p>Our team crafts impactful, SEO-friendly content such as blogs, video scripts, and infographics. Every piece is designed to align with your brand's voice and attract the right audience.</p>
+                        <ul class="service-features">
+                            <li>Blog writing & optimization</li>
+                            <li>Video script development</li>
+                            <li>Infographic design</li>
+                            <li>Brand voice alignment</li>
+                            <li>SEO content strategy</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Create Content</a>
+                    </div>
+                </div>
+
+                <!-- Web Analytics -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">📈</div>
+                        <h3>Web Analytics and Reporting</h3>
+                    </div>
+                    <div class="service-content">
+                        <p>We provide detailed analytics and reporting through tools like Google Analytics and Data Studio. Track user behavior, traffic sources, and conversions to make informed decisions that boost performance.</p>
+                        <ul class="service-features">
+                            <li>Comprehensive analytics setup</li>
+                            <li>Custom reporting dashboards</li>
+                            <li>User behavior analysis</li>
+                            <li>Conversion tracking</li>
+                            <li>Performance insights</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">View Analytics</a>
+                    </div>
+                </div>
+
+                <!-- ORM -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">🛡️</div>
+                        <h3>Online Reputation Management (ORM)</h3>
+                    </div>
+                    <div class="service-content">
+                        <p>We protect and enhance your brand's image by managing reviews, addressing feedback, and monitoring online mentions. Build trust with advanced tools and a proactive reputation strategy.</p>
+                        <ul class="service-features">
+                            <li>Review management</li>
+                            <li>Feedback response strategies</li>
+                            <li>Online mention monitoring</li>
+                            <li>Reputation repair</li>
+                            <li>Trust building initiatives</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Protect Brand</a>
+                    </div>
+                </div>
+
+                <!-- Video Marketing -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">🎥</div>
+                        <h3>Video Marketing Optimization</h3>
+                    </div>
+                    <div class="service-content">
+                        <p>Our video optimization services ensure maximum reach and engagement. From keyword tagging to analytics-driven strategies, we enhance your video content's visibility on platforms like YouTube.</p>
+                        <ul class="service-features">
+                            <li>YouTube optimization</li>
+                            <li>Video SEO strategies</li>
+                            <li>Keyword tagging</li>
+                            <li>Engagement optimization</li>
+                            <li>Performance analytics</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Optimize Videos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Transform Your Digital Presence?</h2>
+            <p>Let's discuss how our comprehensive digital marketing services can help your business achieve its goals and drive sustainable growth.</p>
+            <a href="#contact" class="primary-cta">Get Free Consultation</a>
+            <a href="#portfolio" class="secondary-cta">View Our Work</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <h3>iCoast Solutions</h3>
+                <p>Your trusted partner for digital marketing success</p>
+                <p>📧 info@icoastsolutions.com | 📞 +1 (555) 123-4567</p>
+            </div>
+            <p>&copy; 2025 iCoast Solutions. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // Back to Top Button
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe service cards for animation
+        document.querySelectorAll('.service-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Add loading animation delay for cards
+        document.querySelectorAll('.service-card').forEach((card, index) => {
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 150);
+        });
+    </script>
+</body>
+</html>
